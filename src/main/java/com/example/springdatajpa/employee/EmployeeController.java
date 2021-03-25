@@ -13,26 +13,26 @@ public class EmployeeController {
 
     @RequestMapping("/employees")
     public List<Employee> getAllEmployees() {
-        return employeeService.getAllTopics();
+        return employeeService.getAllEmployee();
     }
 
     @RequestMapping("/employees/{employee-id}")
     public Employee getEmployee(@PathVariable("employee-id") String id) {
-        return employeeService.getTopic(id);
+        return employeeService.getEmployee(id);
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/employees")
     public void addEmployee(@RequestBody Employee employee) {
-        employeeService.addTopic(employee);
+        employeeService.addEmployee(employee);
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/employees/{id}")
     public void updateEmployee(@RequestBody Employee employee, @PathVariable String id) {
-        employeeService.updateTopic(employee, id);
+        employeeService.updateEmployee(employee, id);
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/employees/{id}")
     public void deleteEmployee(@PathVariable String id) {
-        employeeService.deleteTopic(id);
+        employeeService.deleteEmployee(id);
     }
 }

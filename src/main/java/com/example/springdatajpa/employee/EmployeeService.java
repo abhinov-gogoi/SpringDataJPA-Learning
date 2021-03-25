@@ -14,38 +14,25 @@ public class EmployeeService {
     @Autowired
     private EmployeeRepository employeeRepository;
 
-    private List<Employee> employees = new ArrayList<>(Arrays.asList(
-            new Employee("1", "John", "Java Developer"),
-            new Employee("2", "Mike", "Python Developer"),
-            new Employee("3", "Mary", "PHP Developer"),
-            new Employee("4", "Jinny", ".NET Developer")
-    )) ;
-
-    public List<Employee> getAllTopics() {
+    public List<Employee> getAllEmployee() {
         List<Employee> employees = new ArrayList<>();
         employeeRepository.findAll().forEach(employees::add);
         return employees;
     }
 
-    public Employee getTopic(String id) {
-        return employees.stream().filter(t -> t.getId().equals(id)).findFirst().get();
+    public Employee getEmployee(String id) {
+        return employeeRepository.findById(id).orElse(null);
     }
 
-    public void addTopic(Employee employee) {
+    public void addEmployee(Employee employee) {
         employeeRepository.save(employee);
     }
 
-    public void updateTopic(Employee employee, String id) {
-        for (int i = 0; i< employees.size(); i++) {
-            Employee t = employees.get(i);
-            if(t.getId().equals(id)) {
-                employees.set(i, employee);
-                return;
-            }
-        }
+    public void updateEmployee(Employee employee, String id) {
+        employeeRepository.save(employee);
     }
 
-    public void deleteTopic(String id) {
-        employees.removeIf(employee -> employee.getId().equals(id));
+    public void deleteEmployee(String id) {
+        employeeRepository.deleteById(id);
     }
 }
