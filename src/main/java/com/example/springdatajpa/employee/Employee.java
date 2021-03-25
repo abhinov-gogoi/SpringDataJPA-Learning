@@ -2,8 +2,10 @@ package com.example.springdatajpa.employee;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="employee")
 public class Employee {
     @Id
     private String id;
@@ -42,5 +44,14 @@ public class Employee {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                '}';
     }
 }
